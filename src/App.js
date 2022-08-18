@@ -1,25 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
 
+import Cards from './components/Cards/Card';
+import NavBar from './components/NavBar/NavBar';
+import SearchForm from './components/SearchForm/SearchForm';
+import file from './file';
+import file2 from './SearchData'
+import { useState } from 'react'
 function App() {
+  const [data, setData] = useState({})
+
+  const getSearchData = (formValue) => {
+    const newdata = formValue
+    setData(newdata)
+    console.log(newdata)
+    console.log("hi")
+
+  }
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar />
+
+      <SearchForm handleSubmit={getSearchData} dataSearch={file2} />
+      <Cards data={file} search={data} />
     </div>
   );
 }
 
 export default App;
+
+
